@@ -209,8 +209,9 @@ const deleteBlogByQuery = async function (req, res) {
         }
         let deletedTime = new Date().toISOString();
         let blogdata = await blogModel.findOne(obj).select({ authorId:1,_id:0 })
-        let id= blogdata["authorId"].valueOf()
+        console.log(blogdata)
         if (!blogdata) return res.status(400).send({ status: false, msg: "Sorry No Blog Found either check the Upper and Lower case of Letters" })
+        let id= blogdata["authorId"].valueOf()
         console.log(id)
 
         let token = req.headers["X-Api-key"];
